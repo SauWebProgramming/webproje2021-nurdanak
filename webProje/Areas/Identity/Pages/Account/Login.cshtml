@@ -1,0 +1,57 @@
+﻿@page
+@model LoginModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+    ViewData["Title"] = localizer["giris"];
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h1>@ViewData["Title"]</h1>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label>@localizer["mail"]</label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>@localizer["sifre"]</label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            @localizer["benihatirla"]
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">@localizer["giris"]</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a class="text-black-50" id="forgot-password" asp-page="./ForgotPassword">@localizer["sifreunutuldu"]</a>
+                    </p>
+                    <p>
+                        <a class="text-black-50" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">@localizer["yenikayit"]</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,11 @@
+﻿@page
+@model AccessDeniedModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+    ViewData["Title"] = localizer["baslik"];
+}
+
+<header>
+    <h1 class="text-black-50">@ViewData["Title"]</h1>
+    <p class="text-black-50">@localizer["icerik"]</p>
+</header>

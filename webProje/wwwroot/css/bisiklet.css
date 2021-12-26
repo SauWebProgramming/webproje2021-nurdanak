@@ -1,0 +1,26 @@
+﻿table {
+    width: 100%;
+    border: 1px solid black;
+}
+
+th {
+    cursor: pointer;
+    height: 50px;
+}
+
+th, td {
+    text-align: center;
+    padding: 16px;
+}
+
+td {
+    height: 200px;
+}
+
+a {
+    color:brown;
+}
+
+tr:nth-child(even) {
+    background-color: transparent;
+}

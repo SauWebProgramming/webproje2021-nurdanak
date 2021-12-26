@@ -1,0 +1,75 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BisikletiniBul</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+</head>
+<body style="background-color: #3b1d09" > 
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@localizer["anasayfa"]</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @localizer["bis"]
+                        </a>
+                        <div class="dropdown-menu" style="background-color: #470520" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="nav-link" asp-area="" asp-controller="Bisiklet" asp-action="Index">@localizer["tbis"]</a>
+                            <a class="nav-link" asp-area="" asp-controller="Bisiklet" asp-action="DagBisikletleri">@localizer["dagbis"]</a>
+                            <a class="nav-link" asp-area="" asp-controller="Bisiklet" asp-action="YolBisikletleri">@localizer["yolbis"]</a>
+                            <a class="nav-link" asp-area="" asp-controller="Bisiklet" asp-action="SehirBisikletleri">@localizer["sehirbis"]</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Bisiklet" asp-action="Karsilastir">@localizer["karsilastirma"]</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Bisiklet" asp-action="Favoriler">@localizer["favoriler"]</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Bisiklet" asp-action="KadroBoyu">@localizer["kadroboyu"]</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead text-center text-white">
+        <div class="masthead-content">
+            <div class="container" >
+                <main role="main">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </header>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p class="m-0 text-center text-white small">&copy; 2021 - BisikletiniBul - <a class="text-danger" asp-area="" asp-controller="Home" asp-action="Privacy">@localizer["gizlilik"]</a></p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

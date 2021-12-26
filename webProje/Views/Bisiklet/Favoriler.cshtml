@@ -1,0 +1,69 @@
+﻿@model webProje.Models.ViewModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = @localizer["Title"];
+}
+<head>
+    <link rel="stylesheet" href="~/css/bisiklet.css" />
+    <link rel="stylesheet" href="~/js/bisiklet.js" />
+</head>
+
+<body>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <h1>
+            @localizer["liste"]
+        </h1>
+        <h6>
+            @localizer["siralama"]
+        </h6>
+        <table id="myTable" class="border-dark">
+            <tr>
+                <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+                <th onclick="sortTable(0)">@localizer["fotograf"]</th>
+                <th onclick="sortTable(2)">@localizer["kullanimalani"]</th>
+                <th onclick="sortTable(3)">@localizer["marka"]</th>
+                <th onclick="sortTable(3)">@localizer["model"]</th>
+            </tr>
+
+            @{
+                var Fav = Model.KullaniciFavoriVM.Where(x => x.KullaniciId == (UserManager.GetUserId(User)));
+            }
+
+            @foreach (var bisiklet in Fav)
+            {
+                <tr>
+                    <td>
+                        <img src="~/@bisiklet.BisikletId-.png" height=200 width=300 />
+                    </td>
+                    <td>
+                        @localizer[bisiklet.KullanimAlani]
+                    </td>
+                    <td>
+                        @bisiklet.Marka
+                    </td>
+                    <td>
+                        @bisiklet.Model
+                    </td>
+                    <td>
+                        <form asp-action="FavoriCikar" method="post">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="FavId" value="@bisiklet.FavId" />
+                            </div>
+                            <input type="submit" style="background-color: #470520; color:aliceblue" class="btn" value="@localizer["cikar"]" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
+    else
+    {
+        <h1>@localizer["girisyap"]</h1>
+    }
+</body>
